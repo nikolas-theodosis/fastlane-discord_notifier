@@ -1,0 +1,5 @@
+lane :test do
+  discord_notifier(
+    webhook_url:"https://discordapp.com/api/webhooks/700720607322439681/z1G4C4k0Sn5q4g1l21mOWQsCl6AmAQ0k3zmtQt9V42CEFvd6ayRfZf3uMvRcXAYWOTGu"
+  )
+end
