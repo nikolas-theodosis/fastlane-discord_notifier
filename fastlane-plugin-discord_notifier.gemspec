@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'n.theodosis@stoiximan.gr'
 
   spec.summary       = 'Discord Notifier'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-discord_notifier"
+  spec.homepage      = 'https://github.com/nikolas-theodosis/fastlane-discord_notifier'
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
