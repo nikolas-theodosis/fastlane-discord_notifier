@@ -32,7 +32,7 @@ module Fastlane
           token: bot_token,
           client_id: client_id
         )
-        user = bot.user(user)
+        user = bot.user(user_id)
       
         return user
       end
