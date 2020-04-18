@@ -4,7 +4,6 @@ lane :test do
     title: "Title",
     description: "Description",
     success: true,
-    author:ENV['USER'],
     thumbnail_url:"https://cdn.discordapp.com/embed/avatars/0.png",
     image_url:"https://cdn.discordapp.com/embed/avatars/0.png"
   )

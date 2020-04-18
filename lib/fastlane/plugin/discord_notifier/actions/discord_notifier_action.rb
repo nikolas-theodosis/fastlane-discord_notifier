@@ -23,6 +23,11 @@ module Fastlane
           UI.important('Fetching user data failed. Continuing anyway...')
         end
 
+        author_name = ENV['USER']
+        unless user.nil?
+          author_name = user.name
+        end
+
         unless !params[:showGravatar]
           discord_avatar = Helper::DiscordNotifierHelper.gravatarImageUrl
         end
@@ -39,7 +44,7 @@ module Fastlane
               url: params[:image_url]
             )
             embed.author = Discordrb::Webhooks::EmbedAuthor.new(
-              name: params[:author],
+              name: author_name,
               icon_url: discord_avatar
             )
             embed.colour = color
@@ -91,11 +96,6 @@ module Fastlane
           ),
           FastlaneCore::ConfigItem.new(
             key: :image_url,
-            optional: true,
-            type: String
-          ),
-          FastlaneCore::ConfigItem.new(
-            key: :author,
             optional: true,
             type: String
           ),
