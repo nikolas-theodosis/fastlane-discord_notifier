@@ -27,12 +27,26 @@ discord_notifier(
     description: "<a description>",
     success: "<true/false>", # Optional - Default is true
     color: "FFFFF", # Optional
-    author:"<author's name>" # Optional
     thumbnail_url:"<thumbnail url>", # Optional
     image_url:"<image url>" # Optional 
   )
 ```
-**A note on the color property** : The color defined will be attributed to the message sidebar. The sidebar by default uses #4BB543 if `success` is set to true and #CC0000 if set to false. If `color` is set, it overrides the default color described before.
+
+## Keys
+
+| Key | Description | Optional
+| --- | --- | ---|
+| webhook_url | Discord webhook url | false
+| title | Message title | false
+| description | Message description | false
+| thumbnail_url | Thumbnail url | true
+| image_url | Message image url | true
+| success | Show file differences that haven't been staged | true
+| color | The color defined will be attributed to the message sidebar. The sidebar by default uses #4BB543 if `success` is set to true and #CC0000 if set to false. If color is set, it overrides the default color described before. | true
+| gravatar_email | If set, then the author's image will be replaced by the resolved gravatar. If not and the next 3 keys are set, the author's image will be set as the user's discord avatar  | true
+| bot_token | Token of bot assigned to discord server | true
+| client_id | Client id retrieved upon bot creation | true
+| discord_user_id | User id of the discord user | true
 
 ## Example
 
