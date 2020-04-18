@@ -14,13 +14,29 @@ fastlane add_plugin discord_notifier
 
 Discord Notifier
 
-**Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
+`discord_notifier` posts a message in a discord channel defined by a webhook created for your discord server.
+
+## Usage
+
+To get started, first, create a webhook in your Discord server. You can find detailed instructions [here](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks). You will need the webhook url in each call to successfully post a message in your channel.
+
+```ruby
+discord_notifier(
+    webhook_url:"<discord webhook url>",
+    title: "<a title>",
+    description: "<a description>",
+    success: "<true/false>", # Optional - Default is true
+    color: "FFFFF", # Optional
+    author:"<author's name>" # Optional
+    thumbnail_url:"<thumbnail url>", # Optional
+    image_url:"<image url>" # Optional 
+  )
+```
+**A note on the color property** : The color defined will be attributed to the message sidebar. The sidebar by default uses #4BB543 if `success` is set to true and #CC0000 if set to false. If `color` is set, it overrides the default color described before.
 
 ## Example
 
 Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
-
-**Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
 
 ## Run tests for this plugin
 
