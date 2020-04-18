@@ -28,8 +28,8 @@ module Fastlane
           author_name = user.name
         end
 
-        unless !params[:showGravatar]
-          discord_avatar = Helper::DiscordNotifierHelper.gravatarImageUrl
+        unless params[:gravatar_email].nil? || params[:gravatar_email].empty?
+          discord_avatar = Helper::DiscordUserHelper.gravatarImageUrl(params[:gravatar_email])
         end
        
         client = Discordrb::Webhooks::Client.new(url: params[:webhook_url])
@@ -111,10 +111,9 @@ module Fastlane
             type: String
           ),
           FastlaneCore::ConfigItem.new(
-            key: :showGravatar,
+            key: :gravatar_email,
             optional: true,
-            default_value: false,
-            is_string: false
+            type: String
           ),
           FastlaneCore::ConfigItem.new(
             key: :bot_token,

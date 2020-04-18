@@ -17,10 +17,10 @@ module Fastlane
 
     class DiscordUserHelper
 
-      def self.gravatarImageUrl
+      def self.gravatarImageUrl(email)
         email_address = ENV["FASTLANE_USER"].downcase
         # create the md5 hash
-        hash = Digest::MD5.hexdigest(email_address)
+        hash = Digest::MD5.hexdigest(email)
         # compile URL which can be used in <img src="RIGHT_HERE"...
         image_src = "https://www.gravatar.com/avatar/#{hash}"
         
@@ -32,7 +32,7 @@ module Fastlane
           token: bot_token,
           client_id: client_id
         )
-        user = bot.user(user_id)
+        user = bot.user(user)
       
         return user
       end
