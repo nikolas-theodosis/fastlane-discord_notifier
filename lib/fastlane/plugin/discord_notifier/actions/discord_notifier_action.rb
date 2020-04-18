@@ -2,6 +2,7 @@ require 'fastlane/action'
 require_relative '../helper/discord_notifier_helper'
 require 'discordrb/webhooks'
 
+
 module Fastlane
   module Actions
     class DiscordNotifierAction < Action
@@ -13,6 +14,17 @@ module Fastlane
 
         unless params[:color].nil? || params[:color] == 0
           color = params[:color]
+        end
+        
+        begin
+          user = Helper::DiscordUserHelper.findUser(params[:bot_token], params[:client_id], params[:discord_user_id])
+          discord_avatar = user.avatar_url
+        rescue => ex
+          UI.important('Fetching user data failed. Continuing anyway...')
+        end
+
+        unless !params[:showGravatar]
+          discord_avatar = Helper::DiscordNotifierHelper.gravatarImageUrl
         end
        
         client = Discordrb::Webhooks::Client.new(url: params[:webhook_url])
@@ -27,7 +39,8 @@ module Fastlane
               url: params[:image_url]
             )
             embed.author = Discordrb::Webhooks::EmbedAuthor.new(
-              name: params[:author]
+              name: params[:author],
+              icon_url: discord_avatar
             )
             embed.colour = color
             embed.timestamp = Time.now
@@ -94,6 +107,30 @@ module Fastlane
           ),
           FastlaneCore::ConfigItem.new(
             key: :color,
+            optional: true,
+            type: String
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :showGravatar,
+            optional: true,
+            default_value: false,
+            is_string: false
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :bot_token,
+            env_name: "DISCORD_BOT_TOKEN",
+            optional: true,
+            type: String
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :client_id,
+            env_name: "DISCORD_CLIENT_ID",
+            optional: true,
+            type: String
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :discord_user_id,
+            env_name: "DISCORD_USER_ID",
             optional: true,
             type: String
           )
