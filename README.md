@@ -25,10 +25,10 @@ discord_notifier(
     webhook_url:"<discord webhook url>",
     title: "<a title>",
     description: "<a description>",
-    success: "<true/false>", # Optional - Default is true
-    color: "FFFFF", # Optional
-    thumbnail_url:"<thumbnail url>", # Optional
-    image_url:"<image url>" # Optional 
+    success: "<true/false>", 
+    color: "FFFFF", 
+    thumbnail_url:"<thumbnail url>", 
+    image_url:"<image url>"  
   )
 ```
 
@@ -47,6 +47,8 @@ discord_notifier(
 | bot_token | Token of bot assigned to discord server | true
 | client_id | Client id retrieved upon bot creation | true
 | discord_user_id | User id of the discord user | true
+
+**Note on the Bot**: Currently the bot is needed in case you want to retrieve your discord user's data. the plugin is using the user's name and avatar to assign them to the author of the message. Create a [discord application](https://discordapp.com/developers/applications), then a new bot and finally assign it to your server. You will need the bot token, the client id and your discord user's id to successfully retrieve all the necessary data.
 
 ## Example
 
