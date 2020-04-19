@@ -25,10 +25,22 @@ discord_notifier(
     webhook_url:"<discord webhook url>",
     title: "<a title>",
     description: "<a description>",
-    success: "<true/false>", 
-    color: "FFFFF", 
-    thumbnail_url:"<thumbnail url>", 
-    image_url:"<image url>"  
+    fields:[
+      {
+        name:"<some name>", 
+        value:"<some value>"
+      },
+      {
+        name:"<some name>", 
+        value:"<some value>"
+        inline: true
+      },
+      {
+        name:"<some name>", 
+        value:"<some value>"
+        inline: true
+      }
+    ]  
   )
 ```
 
@@ -41,18 +53,19 @@ discord_notifier(
 | description | Message description | false
 | thumbnail_url | Thumbnail url | true
 | image_url | Message image url | true
-| success | Show file differences that haven't been staged | true
+| success | Setting to true will turn the message sidebar green whereas false will turn it to red. If `color` is set, it will override the default behaviour of `success` | true
 | color | The color defined will be attributed to the message sidebar. The sidebar by default uses #4BB543 if `success` is set to true and #CC0000 if set to false. If color is set, it overrides the default color described before. | true
 | gravatar_email | If set, then the author's image will be replaced by the resolved gravatar. If not and the next 3 keys are set, the author's image will be set as the user's discord avatar  | true
 | bot_token | Token of bot assigned to discord server | true
 | client_id | Client id retrieved upon bot creation | true
-| discord_user_id | User id of the discord user | true
+| discord_user_id | User id of the discord user. Setting it as an env variable is suggested so that different users use their own id | true
+| fields | Array of extra `name`, `value` pairs to add to a message. Setting `inline` to true will combine fields in the same row | true
 
 **Note on the Bot**: Currently the bot is needed in case you want to retrieve your discord user's data. the plugin is using the user's name and avatar to assign them to the author of the message. Create a [discord application](https://discordapp.com/developers/applications), then a new bot and finally assign it to your server. You will need the bot token, the client id and your discord user's id to successfully retrieve all the necessary data.
 
 ## Example
 
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`.
+Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`. You can also use a [visualizer](https://leovoel.github.io/embed-visualizer/) to see how discord formats your messages using all the aforementioned keys.
 
 ## Run tests for this plugin
 
