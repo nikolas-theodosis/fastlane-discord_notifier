@@ -10,6 +10,7 @@ module Fastlane
         
         UI.message("Notifying Discord")
 
+        
         color = params[:success] ? "4BB543" : "CC0000"
 
         unless params[:color].nil? || params[:color] == 0
@@ -49,6 +50,11 @@ module Fastlane
             )
             embed.colour = color
             embed.timestamp = Time.now
+          
+            params[:fields].each { |item|
+
+              embed.add_field(name: item[:name], value: item[:value], inline: item[:inline])
+            } unless params[:fields].nil?
           end
         end
       end
@@ -132,6 +138,11 @@ module Fastlane
             env_name: "DISCORD_USER_ID",
             optional: true,
             type: String
+          ),
+          FastlaneCore::ConfigItem.new(
+            key: :fields,
+            optional: true,
+            type: Array
           )
         ]
       end
