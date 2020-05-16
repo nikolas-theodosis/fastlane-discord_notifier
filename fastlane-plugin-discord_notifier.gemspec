@@ -32,4 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('rubocop-require_tools')
   spec.add_development_dependency('simplecov')
   spec.add_development_dependency('fastlane', '>= 2.145.0')
+  spec.add_development_dependency('discordrb', '3.3.0')
 end
